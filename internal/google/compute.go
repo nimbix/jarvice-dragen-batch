@@ -333,7 +333,7 @@ func (vm GoogleCompute) ListInstances(filter string) error {
 	instances := instancesClient.List(ctx, req)
 
 	for instance, err := instances.Next(); err == nil; instance, err = instances.Next() {
-		logger.Ologger.Info("Found instance", *instance.Name)
+		logger.Ologger.Info("Found instance " + *instance.Name)
 	}
 
 	return nil

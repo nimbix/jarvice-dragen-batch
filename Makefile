@@ -15,13 +15,13 @@ all: meter service
 publish: all push-meter push-service
 
 service:
-	docker build -t "${CONTAINER_REPO}/jarvice-dragen-service:${VERSION}" --build-arg "PACKAGE=service" ${BUILD_ARGS} ${PWD}
+	docker build --add-host "metadata.google.internal:127.0.0.1" -t "${CONTAINER_REPO}/jarvice-dragen-service:${VERSION}" --build-arg "PACKAGE=service" ${BUILD_ARGS} ${PWD}
 
 push-service:
 	docker push "${CONTAINER_REPO}/jarvice-dragen-service:${VERSION}"
 
 meter:
-	docker build -t "${CONTAINER_REPO}/jarvice-dragen-meter:${VERSION}" --build-arg "PACKAGE=meter" ${BUILD_ARGS} -f Dockerfile.slim ${PWD}
+	docker build --add-host "metadata.google.internal:127.0.0.1" -t "${CONTAINER_REPO}/jarvice-dragen-meter:${VERSION}" --build-arg "PACKAGE=meter" ${BUILD_ARGS} -f Dockerfile.slim ${PWD}
 
 push-meter:
 	docker push "${CONTAINER_REPO}/jarvice-dragen-meter:${VERSION}"
