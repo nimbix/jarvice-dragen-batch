@@ -166,6 +166,7 @@ func (b DragenBatch) Init() bool {
 
 		return false
 	}
+	logger.Ologger.Info("Batch processing starting")
 
 	return true
 }
