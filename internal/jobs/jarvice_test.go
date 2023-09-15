@@ -66,6 +66,16 @@ func checkApiArgs(values url.Values) bool {
 	return true
 }
 
+func checkApiArgsMachines(values url.Values) bool {
+	if values.Get("username") == "" {
+		return false
+	}
+	if values.Get("apikey") == "" {
+		return false
+	}
+	return true
+}
+
 func jarviceServer(t *testing.T, terminate bool) *httptest.Server {
 	ts := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		path := r.URL.Path
@@ -84,12 +94,12 @@ func jarviceServer(t *testing.T, terminate bool) *httptest.Server {
 					w.WriteHeader(http.StatusInternalServerError)
 					return
 				} else {
-					if !checkApiArgs(query) {
+					if !checkApiArgsMachines(query) {
 						w.WriteHeader(http.StatusBadRequest)
 						return
 					}
-					if query.Get("number") != number {
-						w.WriteHeader(http.StatusNotFound)
+					if query.Get("username") != username || query.Get("apikey") != apikey {
+						w.WriteHeader(http.StatusUnauthorized)
 						return
 					} else {
 						w.WriteHeader(http.StatusOK)
@@ -166,11 +176,11 @@ func TestCheckAuth(t *testing.T) {
 	ts.Close()
 }
 
-func TestCheckAuthNotFound(t *testing.T) {
-	job = NewJarviceJob(apiHost, username, apikey, nfnumber)
+func TestCheckAuthUnauthorized(t *testing.T) {
+	job = NewJarviceJob(apiHost, username, apikey+"123", nfnumber)
 	ts := jarviceServer(t, false)
 	if job.CheckAuth() {
-		t.Error("CheckAuthNotFound() failed")
+		t.Error("CheckAuthUnauthorized() failed")
 	}
 	ts.Close()
 }

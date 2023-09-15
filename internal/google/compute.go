@@ -381,7 +381,7 @@ func (vm GoogleCompute) CreateReservation(name, template string) error {
 	}
 	defer reservationClient.Close()
 
-	description := "gcloud golang reservation test"
+	description := "gcloud golang reservation for dragen"
 	shareType := "LOCAL"
 	shareSettings := &computepb.ShareSettings{
 		ShareType: &shareType,
@@ -498,7 +498,7 @@ func (vm GoogleCompute) CreateTemplate(name string) error {
 		return err
 	}
 
-	description := "gcloud golang template test"
+	description := "gcloud golang template for dragen"
 	vmTrue := true
 	vmFalse := false
 	machine := config.GoogleMachine
