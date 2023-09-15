@@ -86,7 +86,11 @@ func NewJarviceJob(apiHost, username, apikey, number string) *JarviceJob {
 
 func (job JarviceJob) CheckAuth() bool {
 
-	values := job.values
+	values := url.Values{}
+	for k, v := range job.values {
+		values[k] = v
+	}
+
 	values.Del("number")
 	resp, err := http.PostForm(job.apiHost+"/jarvice/machines", values)
 	if err != nil {
