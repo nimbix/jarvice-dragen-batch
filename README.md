@@ -54,7 +54,7 @@ printf "$ILLUMINA_LIC_SERVER" | gcloud secrets create --project $PROJECT "illumi
 
 4. Prepare batch example
 ```bash
-git clone github.com/nimbix/jarvice-dragen-batch
+git clone https://github.com/nimbix/jarvice-dragen-batch
 cd examples
 # Google Cloud Storage bucket for testing
 BUCKET_NAME=""
