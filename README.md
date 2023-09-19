@@ -74,6 +74,8 @@ NAME="$NAME"
 PROJECT="$PROJECT"
 # Google Cloud zone (e.g. us-central1)
 ZONE="$ZONE"
+# Google Cloud service account
+SERVICE_ACCOUNT="default"
 # list available versions with: ../tools/list-versions.sh
 VERSION="$VERSION"
 # DRAGEN application (e.g "illumina-dragen_3_7_8n")

@@ -8,6 +8,8 @@ NAME=
 PROJECT=
 # Google Cloud zone (e.g. "us-central1")
 ZONE=
+# Google Cloud service account
+SERVICE_ACCOUNT=
 # list available versions with: ../tools/list-versions.sh
 VERSION=
 # DRAGEN application (e.g "illumina-dragen_3_7_8n")
@@ -78,10 +80,11 @@ batch_json=$(cat <<EOD
               "imageUri": "us-docker.pkg.dev/jarvice/images/jarvice-dragen-service:$VERSION",
               "entrypoint": "/usr/local/bin/entrypoint",
               "commands": [
-	              "--api-host", "$JARVICE_API_URL",
-	              "--machine", "$JARVICE_MACHINE_TYPE",
-	              "--dragen-app", "$JARVICE_DRAGEN_APP",
-	              "--"
+                "--api-host", "$JARVICE_API_URL",
+                "--machine", "$JARVICE_MACHINE_TYPE",
+                "--dragen-app", "$JARVICE_DRAGEN_APP",
+                "--google-sa", "$SERVICE_ACCOUNT",
+                "--"
               ],
               "volumes": []
             }
