@@ -66,6 +66,7 @@ func cleanup(label string) {
 
 type DragenBatch struct {
 	label                              string
+	serviceAccount                     string
 	vm                                 *google.GoogleCompute
 	job                                *jobs.JarviceJob
 	b64Args                            string
@@ -74,7 +75,8 @@ type DragenBatch struct {
 }
 
 func NewDragenBatch(apiHost, username, apikey, app, machine,
-	s3AccessKey, s3SecretKey, illuminaLic string, args ...string) (*DragenBatch, error) {
+	s3AccessKey, s3SecretKey, illuminaLic string,
+	serviceAccount string, args ...string) (*DragenBatch, error) {
 	if len(args) < 1 {
 		return nil, errors.New("missing Dragen arguments")
 	}
@@ -107,6 +109,7 @@ func NewDragenBatch(apiHost, username, apikey, app, machine,
 		dragenBatch.vm = vm
 	}
 
+	dragenBatch.serviceAccount = serviceAccount
 	dragenBatch.apiHost = apiHost
 	dragenBatch.username = username
 	dragenBatch.apikey = apikey
@@ -118,7 +121,7 @@ func NewDragenBatch(apiHost, username, apikey, app, machine,
 
 func (b DragenBatch) Init() bool {
 
-	if err := b.vm.CreateInstanceTemplates(b.label,
+	if err := b.vm.CreateInstanceTemplates(b.label, b.serviceAccount,
 		config.MeterContainer+":"+config.Version,
 		"/usr/local/bin/entrypoint",
 		"--api-host", b.apiHost,

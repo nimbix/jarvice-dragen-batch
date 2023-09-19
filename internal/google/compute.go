@@ -484,7 +484,7 @@ func (vm GoogleCompute) getSubnet(network, region string) (string, error) {
 	return *subnet.Name, nil
 }
 
-func (vm GoogleCompute) CreateTemplate(name string) error {
+func (vm GoogleCompute) CreateTemplate(name, serviceAccount string) error {
 
 	ctx, templateClient, err := createTemplatesClient()
 	if err != nil {
@@ -515,7 +515,7 @@ func (vm GoogleCompute) CreateTemplate(name string) error {
 	networkType := "ONE_TO_ONE_NAT"
 	schedulingMaint := "MIGRATE"
 	schedulingProv := "STANDARD"
-	saEmail := "default"
+	saEmail := serviceAccount
 	properties := &computepb.InstanceProperties{
 		CanIpForward: &vmFalse,
 		Disks: []*computepb.AttachedDisk{
@@ -587,7 +587,7 @@ func (vm GoogleCompute) CreateTemplate(name string) error {
 	return nil
 }
 
-func (vm GoogleCompute) CreateInstanceTemplates(name, container, containerCmd string, containerArgs ...string) error {
+func (vm GoogleCompute) CreateInstanceTemplates(name, serviceAccount, container, containerCmd string, containerArgs ...string) error {
 
 	region := strings.Join(strings.Split(vm.zone, "-")[:2], "-")
 	subnet, err := vm.getSubnet(vm.network, region)
@@ -602,7 +602,7 @@ func (vm GoogleCompute) CreateInstanceTemplates(name, container, containerCmd st
 		"--subnet", subnet,
 		"--region", region,
 		"--maintenance-policy", "MIGRATE",
-		"--service-account", "default",
+		"--service-account", serviceAccount,
 		"--scopes", "https://www.googleapis.com/auth/cloud-platform",
 		"--image-project", config.DragenProject,
 		"--image", config.DragenImage,
