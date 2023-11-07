@@ -14,6 +14,8 @@ SERVICE_ACCOUNT=
 VERSION=
 # DRAGEN application (e.g "illumina-dragen_3_7_8n")
 JARVICE_DRAGEN_APP=
+# job priority (normal, high, or highest)
+JARVICE_JOB_PRIORITY="normal"
 # secrets maintained by Google Secret Manager (https://cloud.google.com/secret-manager)
 # format: projects/${PROJECT}/secrets/<secret-name>/versions/1
 JARVICE_API_USERNAME_SECRET=
@@ -84,6 +86,7 @@ batch_json=$(cat <<EOD
                 "--machine", "$JARVICE_MACHINE_TYPE",
                 "--dragen-app", "$JARVICE_DRAGEN_APP",
                 "--google-sa", "$SERVICE_ACCOUNT",
+                "--job-priority", "$JARVICE_JOB_PRIORITY",
                 "--"
               ],
               "volumes": []

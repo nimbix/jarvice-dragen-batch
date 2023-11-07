@@ -51,6 +51,7 @@ var (
 	dragenApp      string
 	illuminaLic    string
 	serviceAccount string
+	priority       string
 
 	rootCmd = &cobra.Command{
 		Use:   "service",
@@ -66,7 +67,7 @@ var (
 		RunE: func(cmd *cobra.Command, args []string) error {
 			dragenBatch, err := batch.NewDragenBatch(apiHost, username, apikey,
 				dragenApp, machine, s3AccessKey, s3SecretKey, illuminaLic,
-				serviceAccount, args...)
+				serviceAccount, priority, args...)
 			if err != nil {
 				return err
 			} else {
@@ -96,5 +97,6 @@ func init() {
 	rootCmd.Flags().StringVar(&dragenApp, "dragen-app", "", "Dragen JARVICE application")
 	rootCmd.Flags().BoolVar(&bflag, "build", false, "Build info")
 	rootCmd.Flags().StringVar(&serviceAccount, "google-sa", "default", "Google Cloud service account")
+	rootCmd.Flags().StringVar(&priority, "job-priority", "normal", "JARVICE job priority")
 	rootCmd.MarkFlagRequired("dragen-app")
 }
