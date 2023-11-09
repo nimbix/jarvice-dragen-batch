@@ -50,11 +50,6 @@ wget https://storage.googleapis.com/thomashk-public-illumina-sample/HG002.novase
 #wget https://webdata.illumina.com/downloads/software/dragen/hg38_alt_masked_graph_v2%2Bcnv%2Bgraph%2Brna-8-1644018559-1.run
 #./hg38_alt_masked_graph_v2%2Bcnv%2Bgraph%2Brna-8-1644018559-1.run
 #cd ..
-# Reference for DRAGEN v3.9
-#mkdir 3_9_reference && cd 3_9_reference
-#https://webdata.illumina.com/downloads/software/dragen/genomes/hg38_alt_masked%2Bcnv%2Bgraph%2Brna-8-r1.0-1.run
-#./hg38_alt_masked%2Bcnv%2Bgraph%2Brna-8-r1.0-1.run
-#cd ..
 # Reference for DRAGEN v3.7 or older
 #mkdir 3_7_reference && cd 3_7_reference
 #wget https://s3.amazonaws.com/webdata.illumina.com/downloads/software/dragen/references/genome-files/hg38/hg38_alt_aware%2Bcnv%2Bgraph%2Brna-8-r1.0-0.run
@@ -88,7 +83,7 @@ S3_SECRET_KEY=
 # Illumina license string
 ILLUMINA_LIC_SERVER=
 # Google cloud project
-PROJECT=<<GCP Project name>
+PROJECT=<GCP Project name>
 # Google Cloud zone used for testing (e.g. us-central1)
 ZONE=us-central1
 
