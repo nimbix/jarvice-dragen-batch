@@ -19,7 +19,7 @@ PROJECT=<GCP Project name>
 # create storage bucket for test
 gcloud storage buckets --project $PROJECT create gs://$BUCKET_NAME
 
-#method 1 - use storage trasnfer service
+#method 1 - use storage transfer service
 
 # There is already a public sample data bucket in GCS with reference from Illumina. 
 # IAM - give the project-<project-id>@@storage-transfer-service.iam.gserviceaccount.com role: Storage Legacy Bucket Writer
