@@ -72,11 +72,12 @@ type DragenBatch struct {
 	b64Args                            string
 	app                                string
 	apiHost, username, apikey, machine string
+	priority                           string
 }
 
 func NewDragenBatch(apiHost, username, apikey, app, machine,
 	s3AccessKey, s3SecretKey, illuminaLic string,
-	serviceAccount string, args ...string) (*DragenBatch, error) {
+	serviceAccount, priority string, args ...string) (*DragenBatch, error) {
 	if len(args) < 1 {
 		return nil, errors.New("missing Dragen arguments")
 	}
@@ -116,6 +117,7 @@ func NewDragenBatch(apiHost, username, apikey, app, machine,
 	dragenBatch.app = app
 	dragenBatch.machine = machine
 	dragenBatch.job = &jobs.JarviceJob{}
+	dragenBatch.priority = priority
 	return &dragenBatch, nil
 }
 
@@ -142,7 +144,7 @@ func (b DragenBatch) Init() bool {
 	}
 	if number, err := jarvice.SubmitJarviceJob(b.app, b.machine,
 		b.vm.GetId(), b.vm.GetProject(), b.vm.GetZone(),
-		b.apiHost, b.username, b.apikey, b.b64Args); err != nil {
+		b.apiHost, b.username, b.apikey, b.priority, b.b64Args); err != nil {
 		logger.Ologger.Warn(err.Error())
 		cleanup(b.label)
 		return false

@@ -78,6 +78,7 @@ type JobSubmission struct {
 	Machine     Machine   `json:"machine"`
 	Vault       Vault     `json:"vault"`
 	User        User      `json:"user"`
+	Priority    string    `json:"job_priority"`
 }
 
 type JobResponse struct {
@@ -86,7 +87,7 @@ type JobResponse struct {
 }
 
 func SubmitJarviceJob(app, machine, vmid, project, zone,
-	apiHost, username, apikey, base64Args string) (string, error) {
+	apiHost, username, apikey, priority, base64Args string) (string, error) {
 
 	values := &JobSubmission{
 		App:     app,
@@ -116,6 +117,7 @@ func SubmitJarviceJob(app, machine, vmid, project, zone,
 			Username: username,
 			Apikey:   apikey,
 		},
+		Priority: priority,
 	}
 	values.JobLabel = "vmid=" + vmid
 
