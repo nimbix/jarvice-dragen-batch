@@ -64,6 +64,9 @@
 					"noExternalIpAddress": true
 				}
 			]
+		},
+		"serviceAccount": {
+			"email": "883052455576-compute@developer.gserviceaccount.com"
 		}
 	},
 	"logsPolicy": {
