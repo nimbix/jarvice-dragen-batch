@@ -161,6 +161,6 @@ workflow {
 
 5. Launch the job by using the command:
 
-`./nextflow -c illumina-dragen/nextflow.config run illumina-dragen/illumina-dragen-gcp.nf -dsl1 -profile gbatch`
+`./nextflow -c jarvice-dragen-batch/nextflow-submission/nextflow.config run jarvice-dragen-batch/nextflow-submission/illumina-dragen-gcp.nf  -profile gbatch`
 
 Happy Computing

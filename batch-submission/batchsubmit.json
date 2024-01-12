@@ -46,18 +46,29 @@
 	  ]
 	}
 	}
-     ],     
-       "allocationPolicy": {
- 	  "instances": [
-     	    {
-              "policy": {
-                 "provisioningModel": "STANDARD",
-                 "machineType": "e2-micro"
-              }
-            } 
-          ]
+     ],
+	"allocationPolicy": {
+		"instances": [
+			{
+				"policy": {
+					"provisioningModel": "STANDARD",
+					"machineType": "e2-micro"
+				}
+			}
+		],
+		"network": {
+			"networkInterfaces": [
+				{
+					"network": "projects/service-hpc-project2/global/networks/test-network",
+					"subnetwork": "projects/service-hpc-project2/regions/us-central1/subnetworks/test-subnet"
+				}
+			]
+		},
+		"serviceAccount": {
+			"email": "883052455576-compute@developer.gserviceaccount.com"
+		}
 	},
-       "logsPolicy": {
-    	  "destination": "CLOUD_LOGGING"
-        }
-  }
+	"logsPolicy": {
+		"destination": "CLOUD_LOGGING"
+	}
+}
