@@ -42,7 +42,7 @@ const (
 	DragenDisk     = "/projects/atos-illumina-public/global/images/dragen-cos"
 	DragenProject  = "atos-illumina-public"
 	DragenImage    = "dragen-cos"
-	DragenCommand  = "/usr/local/bin/jarvice-dragen-s3-helper.sh"
+	DragenCommand  = "/usr/bin/taskset -c $(/usr/bin/cat /sys/bus/pci/devices/$(/opt/xilinx/xrt/bin/xbutil scan | tail -5 | grep xilinx | cut -d ' ' -f3)/local_cpulist) /usr/local/bin/jarvice-dragen-s3-helper.sh"
 	JarviceApi     = "https://illumina.nimbix.net/api"
 	JarviceMachine = "nx1"
 )
