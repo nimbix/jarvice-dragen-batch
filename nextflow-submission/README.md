@@ -21,11 +21,11 @@ This is the single files to submit a new Illumina DRAGEN job into Batch.  This i
 			{
               "environment": {
             	"secretVariables": {
-                	"JARVICE_API_USER": "projects/service-hpc-project2/secrets/jarviceApiUsername/versions/latest",
-                    "JARVICE_API_KEY": "projects/service-hpc-project2/secrets/jarviceApiKey/versions/latest",
-                    "S3_ACCESS_KEY": "projects/service-hpc-project2/secrets/batchS3AccessKey/versions/latest",
-                    "S3_SECRET_KEY": "projects/service-hpc-project2/secrets/batchS3SecretKey/versions/latest",
-                    "ILLUMINA_LIC_SERVER": "projects/service-hpc-project2/secrets/illuminaLicServer/versions/latest"
+                	"JARVICE_API_USER": "projects/GCPPROJECTID/secrets/jarviceApiUsername/versions/latest",
+                    "JARVICE_API_KEY": "projects/GCPPROJECTID/secrets/jarviceApiKey/versions/latest",
+                    "S3_ACCESS_KEY": "projects/GCPPROJECTID/secrets/batchS3AccessKey/versions/latest",
+                    "S3_SECRET_KEY": "projects/GCPPROJECTID/secrets/batchS3SecretKey/versions/latest",
+                    "ILLUMINA_LIC_SERVER": "projects/GCPPROJECTID/secrets/illuminaLicServer/versions/latest"
               		}
             	},          
            	  "container": {
@@ -35,7 +35,7 @@ This is the single files to submit a new Illumina DRAGEN job into Batch.  This i
                 	"--api-host", "https://illumina.nimbix.net/api",
                 	"--machine", "nx1",
                 	"--dragen-app", "illumina-dragen_4_2_4n",
-					"--google-sa", "883052455576-compute@developer.gserviceaccount.com",
+					"--google-sa", "GCPPROJECTNAME-compute@developer.gserviceaccount.com",
 					"--", "-f",
 					"-1", "s3://jarvice-dragen-batch/HG002.novaseq.pcr-free.35x.R1.fastq.gz",
 					"-2", "s3://jarvice-dragen-batch/HG002.novaseq.pcr-free.35x.R2.fastq.gz",
