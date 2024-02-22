@@ -2,7 +2,14 @@
 
 This project enables Google Batch processing of Illumina DRAGEN pipelines on Eviden powered FPGA infrastructure.
 
-# Example
+There are multiple ways to submit Illumina DRAGEN pipelines:
+
+ - Script Submission
+ - [Google Cloud Batch submission](batch-submission/README.md)
+ - [Cromwell submission](cromwell-submission/README.md)
+ - [Nextflow submission](nextflow-submission/README.md)
+
+# Script Submission Example
 
 1. Upload sample files to Google Cloud Storage
 
